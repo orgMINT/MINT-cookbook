@@ -85,7 +85,6 @@ Where:
 - `1\O` write digit selector value to Port 1 (SCAN)
 - `;` end of definition
 
-
 ## Definition C: scan number to display
 
 Take a 16-bit number and display it on the upper 4 7-segment displays.
@@ -115,11 +114,13 @@ Where:
 
 ## Count and display
 
+\*\*\* NOTE: rewrite this. It used to use \j which has been deprecated
+
 This is the entry point of the program
 
-Count up from zero 
+Count up from zero
 
-Create a loop for counting up from 0 to FFFF. Inside this loop add another loop which which scans the displays 100 times before moving on. We use the loop counter variable \j@ to access the value of the outer loops variable. We pass that value to command E.
+Create a loop for counting up from 0 to FFFF. Inside this loop add another loop which which scans the displays 100 times before moving on. We use the loop counter variable \i6+@ to access the value of the outer loops variable. We pass that value to command E.
 
 To run type:
 
@@ -132,7 +133,7 @@ Where:
 - `:E` declare a definition called E
 - `#FFFF(` loop FFFF times
 - `100(`
-- `\j@` read the value of _outer_ loop variable `j`
+- `\i6+@` read the value of _outer_ loop variable `j`
 - `E` scan number to display
 - `)` end of inner loop
 - `)` end of outer loop
@@ -145,6 +146,5 @@ Where:
 :A #0F& c@+ \@;
 :B $ A 2\O #40 | 1\O 10() #40 1\O;
 :C #04 4( %%B {$ }}}}$ ) '' ;
-:E #FFFF( 100( \j@ C ) 0 0B ;
+:E #FFFF( 100( \i6+@ C ) 0 0B ;
 ```
-

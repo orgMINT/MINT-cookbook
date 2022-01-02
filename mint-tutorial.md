@@ -234,10 +234,10 @@ For example, to allocate 10 bytes on the heap the heap we need to save the curre
 \h @ a !
 ```
 
-Then we can bump up the value of `\h`. A convenient way to do this is to use the `\+` command.
+Then we can bump up the value of `\h`. 
 
 ```
-10 \h \+
+10 \h@ + \h!
 ```
 
 Now we can use the newly allocated 10 bytes pointed to by variable `a`. Let's store `#AA` in the 0th byte location.
@@ -609,7 +609,6 @@ NOTE:
 | \\(    | beginIFTE \\(`true`)(`false`)                     | b --   |
 | \\B    | if true break out of loop                         | b --   |
 | \\i    | loop counter variable                             | -- adr |
-| \\j    | outer loop counter variable                       | -- adr |
 
 ### Memory and Variable Operations
 
@@ -622,7 +621,6 @@ NOTE:
 | \\!    | STORE a byte to memory                      | val adr --    |
 | \\[    | begin a byte array definition               | --            |
 | \\@    | FETCH a byte from memory                    | -- val        |
-| \\+    | increments variable at address by an amount | val adr --    |
 
 ### System Variables
 
@@ -634,7 +632,6 @@ NOTE:
 | \\d    | start of user definitions            | -- adr |
 | \\h    | heap pointer variable                | -- adr |
 | \\i    | See: Loops and conditional execution | -- adr |
-| \\j    | See: Loops and conditional execution | -- adr |
 
 ### Miscellaneous
 
