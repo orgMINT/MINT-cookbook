@@ -234,7 +234,7 @@ For example, to allocate 10 bytes on the heap the heap we need to save the curre
 \h @ a !
 ```
 
-Then we can bump up the value of `\h`. 
+Then we can bump up the value of `\h`.
 
 ```
 10 \h@ + \h!
@@ -542,7 +542,6 @@ Because the state of the stacks is not explicitly expressed in MINT it can somet
 | /      | 16-bit by 8-bit division DIV              | a b -- c |
 | \_     | 16-bit negation (2's complement) NEG      | a -- b   |
 | \*     | 8-bit by 8-bit integer multiplication MUL | a b -- c |
-| \\\_   | sign of number                            | n -- b   |
 | \>     | 16-bit comparison GT                      | a b -- c |
 | +      | 16-bit integer addition ADD               | a b -- c |
 | <      | 16-bit comparison LT                      | a b -- c |
@@ -612,15 +611,15 @@ NOTE:
 
 ### Memory and Variable Operations
 
-| Symbol | Description                                 | Effect        |
-| ------ | ------------------------------------------- | ------------- |
-| !      | STORE a value to memory                     | val adr --    |
-| [      | begin an array definition                   | --            |
-| ]      | end an array definition                     | -- adr nwords |
-| @      | FETCH a value from memory                   | -- val        |
-| \\!    | STORE a byte to memory                      | val adr --    |
-| \\[    | begin a byte array definition               | --            |
-| \\@    | FETCH a byte from memory                    | -- val        |
+| Symbol | Description                   | Effect        |
+| ------ | ----------------------------- | ------------- |
+| !      | STORE a value to memory       | val adr --    |
+| [      | begin an array definition     | --            |
+| ]      | end an array definition       | -- adr nwords |
+| @      | FETCH a value from memory     | -- val        |
+| \\!    | STORE a byte to memory        | val adr --    |
+| \\[    | begin a byte array definition | --            |
+| \\@    | FETCH a byte from memory      | -- val        |
 
 ### System Variables
 
