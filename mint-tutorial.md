@@ -458,27 +458,27 @@ If the value on the stack is 0 then the code inside the parentheses is skipped e
 
 ## Loop variables
 
-Every MINT loop comes with a counter variable `\i` which tells you how many times you've been through the loop. The variable starts at 0 and goes up to just before the specified limit. For example if the limit of the loop is 5 then we can print out the values 0 to 4 by
+Every MINT loop comes with a counter variable `\=` which tells you how many times you've been through the loop. The variable starts at 0 and goes up to just before the specified limit. For example if the limit of the loop is 5 then we can print out the values 0 to 4 by
 
 ```
-5( \i@ . )
+5( \=@ . )
 
 0 1 2 3 4
 ```
 
-\i is a system variable which takes its value from the current loop. This is different from other variables in MINT which are global in scope. You still use them like other variables however so you need to use `@` to access them and you can even write to them with `!`.
+\= is a system variable which takes its value from the current loop. This is different from other variables in MINT which are global in scope. You still use them like other variables however so you need to use `@` to access them and you can even write to them with `!`.
 
 ## Indefinite loops
 
-Loops in MINT usually have a maximum number of iterations. This is normal and encouraged in MINT but if you really need them, you can make a loop indefinite by manipulating the counter variable `\i` by setting it to 0 For example
+Loops in MINT usually have a maximum number of iterations. This is normal and encouraged in MINT but if you really need them, you can make a loop indefinite by manipulating the counter variable `\=` by setting it to 0 For example
 
 ```
-2( 0\i! `x` )
+2( 0\=! `x` )
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ...etc
 ```
 
-On each iteration we assign zero to the counter variable `\i`. This prevents it from counting up to its limit.
+On each iteration we assign zero to the counter variable `\=`. This prevents it from counting up to its limit.
 NOTE: The limit value (in this case 2) has to be higher than 1 for this to work.
 
 # Breaking loops
@@ -486,17 +486,17 @@ NOTE: The limit value (in this case 2) has to be higher than 1 for this to work.
 All loops can be broken out of by the `\B` command. `\B` takes a conditional argument which must be true before this command exits its loop.
 
 ```
-10( \i@ 4 > \B \i@ . )
+10( \=@ 4 > \B \=@ . )
 
 0 1 2 3 4
 ```
 
-# Nesting loops
+<!-- # Nesting loops
 
-MINT allows loops to be nested but `\i` only refers to the inner most loop. You can access the counter variable of the parent loop by using `\j`. Deep nesting is not encouraged in MINT but it is possible to access the counter variable of a parent loop by adding 6 to the address of the current loop's counter variable.
+MINT allows loops to be nested but `\=` only refers to the inner most loop. You can access the counter variable of the parent loop by using `\j`. Deep nesting is not encouraged in MINT but it is possible to access the counter variable of a parent loop by adding 6 to the address of the current loop's counter variable.
 
 ```
-3(`outer i: ` \i@. \N 3( `    inner i: `\i@. `j: ` \j@. \N) \N)
+3(`outer i: ` \=@. \N 3( `    inner i: `\=@. `j: ` \j@. \N) \N)
 
 outer i:00000
     inner i: 00000 j: 00000
@@ -512,7 +512,7 @@ outer i:00002
     inner i: 00000 j: 00002
     inner i: 00001 j: 00002
     inner i: 00002 j: 00002
-```
+``` -->
 
 # MINT programming style
 

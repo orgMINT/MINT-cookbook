@@ -48,19 +48,19 @@ Watch the video to see the effect of the segment appearing right and then left.
 Write a command which moves the middle segment from the leftmost digit to the rightmost digit.
 
 ```
-:R #04 2\O #20 a! 6( a@ #40| 1\O a@}a! 3500());
+:R #04 2\> #20 a! 6( a@ #40| 1\> a@}a! 3500());
 ```
 
 Where:
 
 - `:R` declare a command called `R`
-- `#04 2\O` turn on middle segment
+- `#04 2\>` turn on middle segment
 - `#20` digit selection for leftmost digit
 - `a!` save in variable `a`
 - `6(` loop over the 6 digits
 - `a@` fetch digit selector
 - `#40|` ensure that bit 6 of the selector byte is high
-- `1\O` output selector info to port 1
+- `1\>` output selector info to port 1
 - `a@}a!` shift digit selector 1 bit right
 - `3500()` delay approx. 0.3 seconds
 - `)` end of loop
@@ -71,19 +71,19 @@ Where:
 Write a command which moves the middle segment from the rightmost digit to the leftmost digit.
 
 ```
-:L #04 2\O #01 a! 6( a@ #40| 1\O a@{a! 3500());
+:L #04 2\> #01 a! 6( a@ #40| 1\> a@{a! 3500());
 ```
 
 Where:
 
 - `:L` declare a command called `L`
-- `#04 2\O` turn on middle segment
+- `#04 2\>` turn on middle segment
 - `#01` digit selection for rightmost digit
 - `a!` save in variable `a`
 - `6(` loop over the 6 digits
 - `a@` fetch digit selector
 - `#40|` ensure that bit 6 of the selector byte is high
-- `1\O` output selector info to port 1
+- `1\>` output selector info to port 1
 - `a@{a!` shift digit selector 1 bit left
 - `3500()` delay approx. 0.3 seconds
 - `)` end of loop
@@ -100,8 +100,8 @@ In a loop of 1000 times perform sequence R followed by sequence L
 ### Code for Exercise 1
 
 ```
-:R #04 2\O #20 a! 6( a@ #40| 1\O a@}a! 3500());
-:L #04 2\O #01 a! 6( a@ #40| 1\O a@{a! 3500());
+:R #04 2\> #20 a! 6( a@ #40| 1\> a@}a! 3500());
+:L #04 2\> #01 a! 6( a@ #40| 1\> a@{a! 3500());
 :I 1000(RL);
 ```
 
@@ -119,19 +119,19 @@ Using the TEC-1's 6 digit 7-segment display create a light chaser in which one s
 Write a command which moves the bottom segment from the leftmost digit to the rightmost digit.
 
 ```
-:E #80 2\O #20 a! 6( a@ #40| 1\O a@}a! 3500() );
+:E #80 2\> #20 a! 6( a@ #40| 1\> a@}a! 3500() );
 ```
 
 Where:
 
 - `:E` declare a command called `E`
-- `#80 2\O` turn on bottom segment
+- `#80 2\>` turn on bottom segment
 - `#20` digit selection for leftmost digit
 - `a!` save in variable `a`
 - `6(` loop over the 6 digits
 - `a@` fetch digit selector
 - `#40|` ensure that bit 6 of the selector byte is high
-- `1\O` output selector info to port 1
+- `1\>` output selector info to port 1
 - `a@}a!` shift digit selector 1 bit right
 - `3500()` delay approx. 0.3 seconds
 - `)` end of loop
@@ -142,7 +142,7 @@ Where:
 Write a command which moves from the bottom right segment to the top right segment.
 
 ```
-:N #01 #40| 1\O #20 2\O 3500() #08 2\O 3500();
+:N #01 #40| 1\> #20 2\> 3500() #08 2\> 3500();
 ```
 
 Where:
@@ -150,10 +150,10 @@ Where:
 - `:N` declare a command called `N`
 - `#01` select the rightmost digit
 - `#40|` ensure that bit 6 of the selector byte is high
-- `1\O` output selector info to port 1
-- `#20 2\O` turn on the bottom right segment
+- `1\>` output selector info to port 1
+- `#20 2\>` turn on the bottom right segment
 - `3500()` delay approx. 0.3 seconds
-- `#08 2\O` turn on the top right segment
+- `#08 2\>` turn on the top right segment
 - `3500()` delay approx. 0.3 seconds
 - `;` end of command declaration
 
@@ -162,19 +162,19 @@ Where:
 Write a command which moves the top segment from the rightmost digit to the leftmost digit.
 
 ```
-:W #01 2\O #01 a! 6( a@ #40| 1\O a@{a! 3500() );
+:W #01 2\> #01 a! 6( a@ #40| 1\> a@{a! 3500() );
 ```
 
 Where:
 
 - `:W` declare a command called `W`
-- `#01 2\O` turn on top segment
+- `#01 2\>` turn on top segment
 - `#01` digit selection for rightmost digit
 - `a!` save in variable `a`
 - `6(` loop over the 6 digits
 - `a@` fetch digit selector
 - `#40|` ensure that bit 6 of the selector byte is high
-- `1\O` output selector info to port 1
+- `1\>` output selector info to port 1
 - `a@{a!` shift digit selector 1 bit left
 - `3500()` delay approx. 0.3 seconds
 - `)` end of loop
@@ -185,7 +185,7 @@ Where:
 Write a command which moves from the top left segment to the bottom left segment.
 
 ```
-:S #20 #40| 1\O #02 2\O 3500() #40 2\O 3500();
+:S #20 #40| 1\> #02 2\> 3500() #40 2\> 3500();
 ```
 
 Where:
@@ -193,10 +193,10 @@ Where:
 - `:S` declare a command called `S`
 - `#20` select the leftmost digit
 - `#40|` ensure that bit 6 of the selector byte is high
-- `1\O` output selector info to port 1
-- `#02 2\O` turn on the top left segment
+- `1\>` output selector info to port 1
+- `#02 2\>` turn on the top left segment
 - `3500()` delay approx. 0.3 seconds
-- `#40 2\O` turn on the bottom left segment
+- `#40 2\>` turn on the bottom left segment
 - `3500()` delay approx. 0.3 seconds
 - `;` end of command declaration
 
@@ -209,10 +209,10 @@ Where:
 ### Code for Exercise 2
 
 ```
-:E #80 2\O #20 a! 6( a@ #40| 1\O a@}a! 3500());
-:N #01 #40| 1\O #20 2\O 3500() #08 2\O 3500();
-:W #01 2\O #01 a! 6( a@ #40| 1\O a@{a! 3500());
-:S #20 #40| 1\O #02 2\O 3500() #40 2\O 3500();
+:E #80 2\> #20 a! 6( a@ #40| 1\> a@}a! 3500());
+:N #01 #40| 1\> #20 2\> 3500() #08 2\> 3500();
+:W #01 2\> #01 a! 6( a@ #40| 1\> a@{a! 3500());
+:S #20 #40| 1\> #02 2\> 3500() #40 2\> 3500();
 :J 1000(ENWS) ;
 ```
 
