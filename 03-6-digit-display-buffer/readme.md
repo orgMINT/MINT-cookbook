@@ -1,6 +1,6 @@
 # Recipe 3: 6 digit display buffer
 
-## Problem
+## Project
 
 Set up a region of memory to contain segment on/off information for the TEC-1's 6 7-segment displays. Write a routine to send this information to the TEC-1's displays by rapidly scanning the displays one at a time, activating each display for a short time before moving on to the next display. To create the illusion that all 6 displays are being lit simultaneously, this scan process needs to happen faster than the human eye can perceive.
 
