@@ -162,7 +162,7 @@ To write out the numbers we need to look up their segment data in a table.
 ### Main program
 
 ```
-:F b@ 6( \=@E % \! 1+ ) ' 1000(B) ;
+:F b@ 6( \i@E % \! 1+ ) ' 1000(B) ;
 ```
 
 - `:F` declare a command called `F`
@@ -171,7 +171,7 @@ To write out the numbers we need to look up their segment data in a table.
 
 - `6(` loop 6 times, once for each of the 6 digits
 
-- `\=@E` get loop counter variable and get segment data
+- `\i@E` get loop counter variable and get segment data
 
 - `%` copy buffer address to top of stack. Top two items are `segments` and `address`
 
@@ -196,7 +196,7 @@ To write out the numbers we need to look up their segment data in a table.
   :B #20 b@ 6( %% \@ A 1+ $}$ ) '' ;
   \[#EB #28 #CD #AD #2E #A7 #E7 #29 #EF #2F #6F #E6 #C3 #EC #C7 #47] ' c!
   :E c@ + \@ ;
-  :F b@ 6( \=@E % \! 1+ ) ' 1000(B) ;
+  :F b@ 6( \i@E % \! 1+ ) ' 1000(B) ;
 
   ```
 
@@ -245,12 +245,12 @@ To write out the numbers we need to look up their segment data in a table.
 ### Main program
 
 ```
-:I #FFFF( \=@ H 100(B) ) ;
+:I #FFFF( \i@ H 100(B) ) ;
 ```
 
 - `:I` declare a command called `I`
 - `#FFFF(` count up from 0 to #FFFF
-- `\=@` get loop counter variable
+- `\i@` get loop counter variable
 - `H` convert to segments in buffer
 - `100(B)` scan the display for about 1 second (on a 4MHz Z80)
 - `)` end of loop
@@ -266,7 +266,7 @@ To write out the numbers we need to look up their segment data in a table.
 :E c@ + \@ ;
 :G $ #0F& E $ \! ;
 :H b@ 3+ 4( %% G 1- $ }}}} $ ) '' ;
-:I #FFFF( \=@ H 100(B) ) ;
+:I #FFFF( \i@ H 100(B) ) ;
 
 ```
 

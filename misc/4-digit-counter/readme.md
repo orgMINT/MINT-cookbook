@@ -123,19 +123,17 @@ Create a loop for counting up from 0 to FFFF. Inside this loop add another loop 
 To run type:
 
 ```
-:E #FFFF( \= 100( " C ) ' ) 0 0B ;
+:E #FFFF( 100( \j@ C ) ) 0 0B ;
 ```
 
 Where:
 
 - `:E` declare a definition called E
 - `#FFFF(` loop FFFF times
-- `\=` read the value of outer loop variable
 - `100(`
-- `"` duplicate the value of _outer_ loop variable
+- `\j@` read the value of outer loop variable
 - `C` scan number to display
 - `)` end of inner loop
-- `'` drop the value of outer loop variable
 - `)` end of outer loop
 - `0 0B` turn off Ports 1 & 2 but keeping bit 6 of Port 1 high
 - `;` end of definition
@@ -146,5 +144,5 @@ Where:
 :A #0F& c@+ \@;
 :B $ A 2\> #40 | 1\> 10() #40 1\>;
 :C #04 4( %%B {$ }}}}$ ) '' ;
-:E #FFFF( \= 100( " C ) ' ) 0 0B ;
+:E #FFFF( 100( \j@ C ) ) 0 0B ;
 ```
