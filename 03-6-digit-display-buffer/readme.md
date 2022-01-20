@@ -8,16 +8,16 @@ Set up a region of memory to contain segment on/off information for the TEC-1's 
 
 The TEC-1 controls its display using latches on two ports: the lower 6 bits (bits 0 - 5) of port 1 controls which digit of the 6 7-segment displays is illuminated. A 1 in bit 0 and all zeros in the other 5 illuminates the rightmost digit.
 
-| Bit  | digit         | selector |
-| ---- | ------------- | -------- |
-| 0    | digit 0       | #01      |
-| 1    | digit 1       | #02      |
-| 2    | digit 2       | #04      |
-| 3    | digit 3       | #08      |
-| 4    | digit 4       | #10      |
-| 5    | digit 5       | #20      |
-| 6    | serial        | #40      |
-| 7    | speaker / LED | #80      |
+| Bit | digit         | selector |
+| --- | ------------- | -------- |
+| 0   | digit 0       | #01      |
+| 1   | digit 1       | #02      |
+| 2   | digit 2       | #04      |
+| 3   | digit 3       | #08      |
+| 4   | digit 4       | #10      |
+| 5   | digit 5       | #20      |
+| 6   | serial        | #40      |
+| 7   | speaker / LED | #80      |
 
 One complication is that the bit-banged serial used by MINT on some hardware configurations need bit 6 (#40) to be kept high during the scanning so that random noise isn't transmitted to the serial terminal.
 
@@ -58,17 +58,17 @@ Update the hardware display ports with this data.
 ```
 \\ selector segments --
 
-:A 2\O #40| 1\O 10() #40 1\O ;
+:A 2\> #40| 1\> 10() #40 1\> ;
 ```
 
 Where:
 
 - `:A` declare a command called `A`
-- `2\O` output `segments` data to port 2
+- `2\>` output `segments` data to port 2
 - `#40|` ensure that bit 6 of the `selector` byte is high
-- `1\O` output selector info to port 1
+- `1\>` output selector info to port 1
 - `10()` delay for about half a millisecond
-- `#40 1\O` turn off all segments, leave bit 6 high
+- `#40 1\>` turn off all segments, leave bit 6 high
 - `;` end of command
 
 ### Command B: scan digits to display
@@ -124,13 +124,11 @@ Where:
 
 - `;` end of command
 
-  
-
   ### Code for Exercise 1
 
   ```
   \[0 0 0 0 0 0] ' b!
-  :A 2\O #40| 1\O 10() #40 1\O ;
+  :A 2\> #40| 1\> 10() #40 1\> ;
   :B #20 b@ 6( %% \@ A 1+ $}$ ) '' ;
   :C b@ 6( #FF % \! 1+ ) ' 1000(B) ;
   ```
@@ -189,25 +187,20 @@ To write out the numbers we need to look up their segment data in a table.
 
 - `;` end of command
 
-  
-
   ### Code for Exercise 2
 
   ```
-  
+
   \[0 0 0 0 0 0] ' b!
-  :A 2\O #40| 1\O 10() #40 1\O ;
+  :A 2\> #40| 1\> 10() #40 1\> ;
   :B #20 b@ 6( %% \@ A 1+ $}$ ) '' ;
   \[#EB #28 #CD #AD #2E #A7 #E7 #29 #EF #2F #6F #E6 #C3 #EC #C7 #47] ' c!
   :E c@ + \@ ;
   :F b@ 6( \i@E % \! 1+ ) ' 1000(B) ;
-  
+
   ```
 
   Run code with command F
-
-  
-  
 
 ## Exercise 3: count up from 0 in hex incrementing once a second
 
@@ -267,7 +260,7 @@ To write out the numbers we need to look up their segment data in a table.
 
 ```
 \[0 0 0 0 0 0] ' b!
-:A 2\O #40| 1\O 10() #40 1\O ;
+:A 2\> #40| 1\> 10() #40 1\> ;
 :B #20 b@ 6( %% \@ A 1+ $}$ ) '' ;
 \[#EB #28 #CD #AD #2E #A7 #E7 #29 #EF #2F #6F #E6 #C3 #EC #C7 #47] ' c!
 :E c@ + \@ ;
@@ -278,4 +271,3 @@ To write out the numbers we need to look up their segment data in a table.
 ```
 
 Run code with command I
-

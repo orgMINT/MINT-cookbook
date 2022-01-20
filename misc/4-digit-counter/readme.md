@@ -69,7 +69,7 @@ number scan --
 ```
 
 ```
-:B $ A 2\O #40 | 1\O 10() #40 1\O;
+:B $ A 2\> #40 | 1\> 10() #40 1\>;
 ```
 
 Where:
@@ -77,12 +77,12 @@ Where:
 - `:B` declare a definition called B
 - `$` swap `number` with `scan`
 - `A` convert the lower 4 bits of `number` into 7 segment representation
-- `2\O` write the 7 segments data out to Port 2 (DISPLAY)
+- `2\>` write the 7 segments data out to Port 2 (DISPLAY)
 - `#40 |` bitwise-OR `scan` value with hex 40 to keep bit 6 high
-- `1\O` write digit selector value to Port 1 (SCAN)
+- `1\>` write digit selector value to Port 1 (SCAN)
 - `10()` delay for about half a millisecond
 - `#40` output all 0s to the digits but bit 6 kept high
-- `1\O` write digit selector value to Port 1 (SCAN)
+- `1\>` write digit selector value to Port 1 (SCAN)
 - `;` end of definition
 
 ## Definition C: scan number to display
@@ -114,8 +114,6 @@ Where:
 
 ## Count and display
 
-\*\*\* NOTE: rewrite this. It used to use \j which has been deprecated
-
 This is the entry point of the program
 
 Count up from zero
@@ -125,7 +123,7 @@ Create a loop for counting up from 0 to FFFF. Inside this loop add another loop 
 To run type:
 
 ```
-:E #FFFF( 100( \j@ C ) 0 0B ;
+:E #FFFF( 100( \j@ C ) ) 0 0B ;
 ```
 
 Where:
@@ -133,8 +131,8 @@ Where:
 - `:E` declare a definition called E
 - `#FFFF(` loop FFFF times
 - `100(`
-- `\i6+@` read the value of _outer_ loop variable `j`
-- `E` scan number to display
+- `\j@` read the value of outer loop variable
+- `C` scan number to display
 - `)` end of inner loop
 - `)` end of outer loop
 - `0 0B` turn off Ports 1 & 2 but keeping bit 6 of Port 1 high
@@ -144,7 +142,7 @@ Where:
 
 ```
 :A #0F& c@+ \@;
-:B $ A 2\O #40 | 1\O 10() #40 1\O;
+:B $ A 2\> #40 | 1\> 10() #40 1\>;
 :C #04 4( %%B {$ }}}}$ ) '' ;
-:E #FFFF( 100( \i6+@ C ) 0 0B ;
+:E #FFFF( 100( \j@ C ) ) 0 0B ;
 ```
